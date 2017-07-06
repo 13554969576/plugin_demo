@@ -1,0 +1,6 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: com.tongyx.plugin.favorites.nl1 Fragment
+Bundle-SymbolicName: com.tongyx.plugin.favorites.nl1
+Bundle-Version: 1.0.0
+Fragment-Host: com.tongyx.plugin.favorites;bundle-version="[1.0.0,1.1.0)"

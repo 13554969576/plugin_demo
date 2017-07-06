@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<cheatsheet
+      title="Title">
+   <intro>
+      <description>
+         <b>Body</b>
+      </description>
+   </intro>
+   <item title="Open Package Explorer">
+      <description>
+         Open the <b>Package Explorer</b> view.
+      </description>
+      <command required="false"
+            serialization="org.eclipse.ui.views.showView(org.eclipse.ui.views.showView.viewId=org.eclipse.jdt.ui.PackageExplorer)"/>
+      
+   </item>
+   <item skip="false" title="Select the Favorites &gt; Add command" herf="/com.tongyx.plugin.favorites.help/html/gettingstarted/subtopic.html">
+      <description>
+         Add the selected file to the <b>Favorites</b> view.
+      </description>
+      <command required="false" serialization="com.tongyx.plugin.favorites.commands.add(com.tongyx.plugin.favorites.command.sourceView=org.eclipse.jdt.ui.PackageExplore)" />
+   </item>
+   <item skip="false" title="Select the Favorites &gt; Add command" herf="/com.tongyx.plugin.favorites.help/html/gettingstarted/subtopic.html">
+      <description>
+         Add the selected file to the <b>Favorites</b> view.
+      </description>
+      <action pluginId="com.tongyx.plugin.favorites" class="com.tongyx.plugin.favorites.handlers.AddToFavoritesHandler" />
+   </item>   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+</cheatsheet>

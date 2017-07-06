@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+   <extension
+         point="org.eclipse.help.toc">
+      <toc
+            file="toc.xml"
+            primary="true">
+      </toc>
+      <toc
+            file="tocgettingstarted.xml">
+      </toc>
+      <toc
+            file="tocreference.xml">
+      </toc>
+   </extension>
+   <extension point="org.eclipse.help.contexts">
+   		<contexts file="contexts.xml" plugin="com.tongyx.plugin.favorites" />
+   </extension>
+   <extension
+         point="org.eclipse.ui.cheatsheets.cheatSheetContent">
+      <category
+            id="com.tongyx.plugin.favorites.help.category.cheatsheet"
+            name="Favorites">
+      </category>
+      <cheatsheet
+            category="com.tongyx.plugin.favorites.help.category.cheatsheet"
+            composite="false"
+            contentFile="$nl$/cheatsheets/FavoritesCheatSheet.xml"
+            id="com.tongyx.plugin.favorites.help.cheatsheet"
+            name="Add a favorite to the favorites view">
+         <description>
+            This cheat sheet will show you how to add an item to the favorites view
+         </description>
+      </cheatsheet>
+   </extension>
+
+</plugin>

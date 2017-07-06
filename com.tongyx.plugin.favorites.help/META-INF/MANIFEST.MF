@@ -1,0 +1,6 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Favorites Help
+Bundle-SymbolicName: com.tongyx.plugin.favorites.help;singleton:=true
+Bundle-Version: 1.0.0.qualifier
+Require-Bundle: org.eclipse.ui.cheatsheets;bundle-version="3.5.0"

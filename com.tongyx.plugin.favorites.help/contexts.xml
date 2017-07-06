@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<contexts>
+	<context id="favorites_view_help">
+		<description>This is the Favorites view.</description>
+		<topic href="html/gettingstarted/favorites_view.html" label="Using the Favorites View"/>
+		<topic href="html/gettingstarted/installation.html" label="Installing the Favorites View"/>
+		<topic href="html/reference/preferences.html" label="Favorites View Preferences"/>
+	</context>
+</contexts>
