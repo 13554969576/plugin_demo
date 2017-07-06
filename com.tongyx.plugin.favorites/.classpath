@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="con" path="org.eclipse.pde.core.requiredPlugins"/>
+	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="lib" path="C:/eclipse/neon/plugins/org.eclipse.swt.win32.win32.x86_64_3.105.3.v20170228-0512.jar"/>
+	<classpathentry kind="lib" path="C:/eclipse/neon/plugins/org.eclipse.core.resources_3.11.1.v20161107-2032.jar"/>
+	<classpathentry kind="output" path="bin"/>
+</classpath>

@@ -1,0 +1,376 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+   <extension-point id="favorites" name="Favorites" schema="schema/favorites.exsd"/>
+   <extension
+         point="org.eclipse.ui.views">
+      <category name="%favorites.view.category.name"
+            id="com.tongyx.plugin.favorites">
+      </category>
+      <view name="%favorites.view.name" icon="icons/favorite.png"
+            category="com.tongyx.plugin.favorites"
+            class="com.tongyx.plugin.favorites.views.FavoritesView"
+            id="com.tongyx.plugin.favorites.views.FavoritesView">
+      </view>
+   </extension>
+   
+   <extension
+         point="org.eclipse.ui.commands">
+      <category
+            name="Tongyx Category"
+            id="com.tongyx.plugin.favorites.commands.category">
+      </category>
+      <command id="com.tongyx.plugin.favorites.commands.openView"
+      		name="Open Favorites View"  categoryId="com.tongyx.plugin.favorites.commands.category">
+      </command>
+      <command id="com.tongyx.plugin.favorites.commands.add"
+      		name="Add"  categoryId="com.tongyx.plugin.favorites.commands.category">
+      		<commandParameter id="com.tongyx.plugin.favorites.command.sourceView" 
+      			name="Source View" optional="true"
+      			values="org.eclipse.ui.internal.registry.ViewParameterValues" />
+      </command>
+      <command id="com.tongyx.plugin.favorites.commands.copy"
+      		name="Copy" categoryId="com.tongyx.plugin.favorites.commands.category">
+      </command>
+      <command id="com.tongyx.plugin.favorites.commands.cut"
+      		name="Cut" categoryId="com.tongyx.plugin.favorites.commands.category">
+      </command>
+      <command id="com.tongyx.plugin.favorites.commands.paste"
+      		name="Paste" categoryId="com.tongyx.plugin.favorites.commands.category">
+      </command>      
+      <command id="com.tongyx.plugin.favorites.commands.rename"
+      		name="Rename" categoryId="com.tongyx.plugin.favorites.commands.category">
+      </command>
+      <command id="com.tongyx.plugin.favorites.editors.delete"
+      		name="Delete" categoryId="com.tongyx.plugin.favorites.commands.category">
+      </command>
+      <category id="com.tongyx.plugin.favorites.PropertiesFiles.category"
+            name="Properties Files commands">
+      </category>
+      <command categoryId="com.tongyx.plugin.favorites.PropertiesFiles.category"
+            defaultHandler="com.tongyx.plugin.favorites.builder.AddRemovePropertiesFilesClassHandler"
+            id="com.tongyx.plugin.favorites.addRemovePropertiesFilesClass"
+            name="Add/RemoveProperties Files">
+      </command>       
+   </extension>
+   <extension
+         point="org.eclipse.ui.menus">
+      <menuContribution locationURI="menu:org.eclipse.ui.main.menu?after=additions">
+      		<menu label="Favorites" id="com.tongyx.plugin.favorites.menus.favoritesMenu" mnemonic="v">
+	      		<command commandId="com.tongyx.plugin.favorites.commands.openView"
+	       		id="com.tongyx.plugin.favorites.menus.openFavoritesView" mnemonic="O"
+	      		icon="icons/favorite.png"/>
+	      		<dynamic id="com.tongyx.plugin.favorites.commands.toggleProjectNature"
+	      			class="com.tongyx.plugin.favorites.contributions.ToggleProjectNatureContributionItem"/>	      		
+      		</menu>
+      		<menu label="Properties Editor" id="com.tongyx.plugin.favorites.menus.propertieseditor" >
+	      		<command commandId="com.tongyx.plugin.favorites.editors.delete"
+		       		id="com.tongyx.plugin.favorites.editors.delete"
+		      		icon="icons/delete_e.png">
+		      		<visibleWhen>
+		      			<with variable="activeEditorId">
+		      				<equals value="com.tongyx.plugin.favorites.editors.properties"/>
+		      			</with>
+		      		</visibleWhen>
+		      	</command>
+      		</menu>
+      </menuContribution>  
+       <menuContribution locationURI="toolbar:org.eclipse.ui.main.toolbar?after=additions">
+      		<toolbar label="Favorites" id="com.tongyx.plugin.favorites.toolbars.main">
+	      		<command commandId="com.tongyx.plugin.favorites.commands.openView"	
+	      		icon="icons/favorite.png"
+	      		tooltip="Open the Favorites view"/>
+      		</toolbar>      	
+      		<toolbar label="Favorites" id="com.tongyx.plugin.favorites.toolbars.main">
+	      		<command commandId="com.tongyx.plugin.favorites.editors.delete"
+	       		id="com.tongyx.plugin.favorites.toolbars.editors.delete"	       		
+	      		icon="icons/delete_e.png"
+	      		tooltip="Delete Proprties"/>
+	      		<visibleWhen checkEnable="false">
+	      			<with variable="activeEditorId">
+	      				<equals value="com.tongyx.plugin.favorites.editors.properties" />
+	      			</with>
+	      		</visibleWhen>
+      		</toolbar>      		
+      </menuContribution> 
+      <menuContribution locationURI="popup:org.eclipse.ui.popup.any?after=additions">
+      		<menu label="Favorites">
+	      		<command commandId="com.tongyx.plugin.favorites.commands.openView"	
+	      		icon="icons/favorite.png"/>
+      		</menu>
+      </menuContribution>  
+       <menuContribution locationURI="popup:com.tongyx.plugin.favorites.views.FavoritesView?before=edit">
+      		<menu label="Edit">
+      			<command commandId="com.tongyx.plugin.favorites.commands.copy" icon="icons/copy_edit_e.png">
+	 		        <enabledWhen>
+			         	<with variable="selection">
+			         		<count value="+" />
+			         	</with>
+			        </enabledWhen>      			
+      			</command>
+      			<command commandId="com.tongyx.plugin.favorites.commands.cut" icon="icons/cut_edit_e.png">
+ 	 		        <enabledWhen>
+			         	<with variable="selection">
+			         		<count value="+" />
+			         	</with>
+			        </enabledWhen>          			
+      			</command>
+      			<command commandId="com.tongyx.plugin.favorites.commands.paste" icon="icons/paste_edit_e.png"/>
+      			<command commandId="com.tongyx.plugin.favorites.commands.rename" icon="icons/pin_editor_e.png">
+ 	 		        <enabledWhen>
+			         	<with variable="selection">
+			         		<count value="1" />
+			         	</with>
+			        </enabledWhen>          			
+      			</command>
+      		</menu>
+      </menuContribution>
+      <menuContribution locationURI="popup:com.tongyx.plugin.favorites.editors.properties?after=edit">
+      		<!--
+      		<menu label="Edit"> -->
+      			<command commandId="com.tongyx.plugin.favorites.editors.delete" icon="icons/delete_e.png">
+	 		        <enabledWhen>
+			         	<with variable="selection">
+			         		<count value="+" />
+			         	</with>
+			        </enabledWhen>      			
+      			</command>      			
+      		<!--</menu> -->
+      </menuContribution> 
+      <menuContribution locationURI="popup:com.tongyx.plugin.favorites.views.FavoritesView?after=additions">      		
+  			<command commandId="org.eclipse.ui.file.properties">
+ 		        <enabledWhen>
+		         	<with variable="selection">
+		         		<count value="1" />
+		         	</with>
+		        </enabledWhen>      			
+  			</command>  
+      </menuContribution>
+      <menuContribution
+            locationURI="popup:org.eclipse.ui.projectConfigure?after=additions">
+         <command
+               commandId="com.tongyx.plugin.favorites.addRemovePropertiesFilesClass"
+               label="Disable Sample builder"
+               style="push">
+            <visibleWhen
+                  checkEnabled="false">
+               <with
+                     variable="selection">
+                  <count
+                        value="1">
+                  </count>
+                  <iterate>
+                     <adapt
+                           type="org.eclipse.core.resources.IProject">
+                        <test
+                              property="org.eclipse.core.resources.projectNature"
+                              value="com.tongyx.plugin.favorites.PropertiesFiles">
+                        </test>
+                     </adapt>
+                  </iterate>
+               </with>
+            </visibleWhen>
+         </command>
+         <command
+               commandId="com.tongyx.plugin.favorites.addRemovePropertiesFilesClass"
+               label="Enable Sample builder"
+               style="push">
+            <visibleWhen
+                  checkEnabled="false">
+               <with
+                     variable="selection">
+                  <count
+                        value="1">
+                  </count>
+                  <iterate>
+                     <adapt
+                           type="org.eclipse.core.resources.IProject">
+                        <not>
+                           <test
+                                 property="org.eclipse.core.resources.projectNature"
+                                 value="com.tongyx.plugin.favorites.PropertiesFiles">
+                           </test>
+                        </not>
+                     </adapt>
+                  </iterate>
+               </with>
+            </visibleWhen>
+         </command>
+      </menuContribution>               
+   </extension>
+   <extension id="com.tongyx.plugin.favorites.propertyTester"
+         type="java.lang.Object"
+         namespace="com.tongyx.plugin.favorites"
+         properties="isFavorite,notFavorite"
+         class="com.tongyx.plugin.favorites.propertytester.FavoritesTester"
+         point="org.eclipse.core.expressions.propertyTesters">
+   </extension>
+   <extension point="org.eclipse.ui.handlers">
+         <handler commandId="com.tongyx.plugin.favorites.commands.openView"	
+   			class="com.tongyx.plugin.favorites.handlers.OpenFavoritesViewHandler" />
+   			
+   		 <handler commandId="com.tongyx.plugin.favorites.commands.add"	
+   			class="com.tongyx.plugin.favorites.handlers.AddToFavoritesHandler" />	
+         
+         <handler commandId="org.eclipse.ui.edit.copy"
+         	class="com.tongyx.plugin.favorites.handlers.CopyFavoritesHandler">
+         	<activeWhen>
+         		<with variable="activePartId">
+         			<equals value="com.tongyx.plugin.favorites.views.FavoritesView" />
+         		</with>
+         	</activeWhen>
+         	<enabledWhen>
+         		<with variable="selection">
+         			<count value="+" />
+         		</with>
+         	</enabledWhen>
+         </handler>
+         <handler commandId="com.tongyx.plugin.favorites.commands.copy"
+         	class="com.tongyx.plugin.favorites.handlers.CopyFavoritesHandler">
+         	<enabledWhen>
+         		<with variable="selection">
+         			<count value="+" />
+         		</with>
+         	</enabledWhen>
+         </handler>
+         <handler commandId="com.tongyx.plugin.favorites.commands.cut"
+         	class="com.tongyx.plugin.favorites.handlers.CutFavoritesHandler">
+         	<enabledWhen>
+         		<with variable="selection">
+         			<count value="+" />
+         		</with>
+         	</enabledWhen>
+         </handler>	
+         <handler commandId="com.tongyx.plugin.favorites.commands.paste"
+         	class="com.tongyx.plugin.favorites.handlers.PasteFavoritesHandler">
+         </handler>
+         <handler commandId="com.tongyx.plugin.favorites.commands.rename"
+         	class="com.tongyx.plugin.favorites.handlers.RenameFavoritesHandler">
+         </handler>
+         <handler commandId="com.tongyx.plugin.favorites.editors.delete"
+         	class="com.tongyx.plugin.favorites.handlers.editors.DeleteHandler">
+         	<!--
+         	<activeWhen>
+         	    <with variable="activeEditorId">
+         			<equals value="com.tongyx.plugin.favorites.editors.properties" />
+         		</with>
+         	</activeWhen>
+         	-->
+         	<enabledWhen>
+         		<with variable="selection">
+         			<count value="+" />
+         		</with>
+         	</enabledWhen>
+         </handler>	 	 	         		
+   </extension>
+   <extension  point="org.eclipse.ui.editors">
+      <editor
+            class="com.tongyx.plugin.favorites.editors.PropertiesEditor"
+            contributorClass="com.tongyx.plugin.favorites.editors.PropertiesEditorContributor"
+            extensions="properties"
+            icon="icons/settings.gif"
+            id="com.tongyx.plugin.favorites.editors.properties"
+            name="Property Editor">
+      </editor>   
+   </extension>
+   <extension point="org.eclipse.ui.contexts">
+         <context id="com.tongyx.plugin.favorites.editors.context"  name="Properties Editor Context" parentId="org.eclipse.ui.textEditorScope">
+         </context>
+   </extension>
+   <extension point="org.eclipse.ui.bindings">
+   		<key commandId="com.tongyx.plugin.favorites.editors.delete" contextId="com.tongyx.plugin.favorites.editors.context" 
+   			schemeId="org.eclipse.ui.defaultAcceleratorConfiguration" sequence="DEL"/>
+   </extension>
+   <extension point="org.eclipse.ui.perspectives">
+   		<perspective class="com.tongyx.plugin.favorites.perspectives.FavoritesPerspective" 
+   			id="com.tongyx.plugin.favorites.perspective.favorites" 
+   			icon="icons/favorite.png" name="Favorites" />
+   </extension>
+   <extension point="org.eclipse.ui.perspectiveExtensions">
+   		<perspectiveExtension targetID="org.eclipse.ui.resourcePerspective">
+   			<view id="com.tongyx.plugin.favorites.views.FavoritesView" relationship="stack"
+   			relative="org.eclipse.ui.views.TaskList" visible="true"/>
+   			<viewShortcut id="com.tongyx.plugin.favorites.views.FavoritesView" />
+   			<perspectiveShortcut id="com.tongyx.plugin.favorites.perspective.favorites" />
+   		</perspectiveExtension>
+   </extension>
+   <extension point="org.eclipse.ui.preferencePages">
+      <page class="com.tongyx.plugin.favorites.preferences.FavoritesPreferencePage"
+            id="com.tongyx.plugin.favorites.prefs.view"
+            name="Favorites">
+      </page>
+      <page category="com.tongyx.plugin.favorites.prefs.view"
+            class="com.tongyx.plugin.favorites.preferences.FavoriteDefaultPrefPage"
+            id="com.tongyx.plugin.favorites.prefs.defaultsetting"
+            name="Default Setting">
+      </page>
+   </extension>
+   <extension
+         point="org.eclipse.core.runtime.preferences">
+      <initializer
+            class="com.tongyx.plugin.favorites.preferences.PreferenceInitializer">
+      </initializer>
+   </extension>
+   <extension point="org.eclipse.ui.propertyPages">
+      <page class="com.tongyx.plugin.favorites.properties.ResourcePropertyPage"
+            id="com.tongyx.plugin.favorites.properties.ResourcePropertyPage"
+            name="Favorites Resource Property" nameFilter="*.*">
+         <enabledWhen>
+         	<and>
+            	<adapt value="org.eclipse.core.resources.IResource" />
+            	<not>
+            		<instanceof value="com.tongyx.plugin.favorites.model.IFavoriteItem"/>
+            	</not>
+            </and>
+         </enabledWhen>
+      </page>
+   </extension>
+   <extension point="org.eclipse.ui.propertyPages">
+      <page class="com.tongyx.plugin.favorites.properties.FavoritesItemPropertyPage"
+            id="com.tongyx.plugin.favorites.properties.FavoritesItemPropertyPage"
+            name="Favorites Item Property" nameFilter="*.*">
+         <enabledWhen>
+            <instanceof value="com.tongyx.plugin.favorites.model.IFavoriteItem"/>
+         </enabledWhen>
+      </page>
+   </extension>
+   <extension  point="org.eclipse.core.resources.builders" id="propertiesAuditor" name="Properties File Auditor" >
+      <builder hasNature="true">
+         <run class="com.tongyx.plugin.favorites.builder.PropertiesAuditor"/>
+      </builder>
+   </extension>
+   <extension id="auditmarker" name="Properties Audit Marker" point="org.eclipse.core.resources.markers">
+      <super type="org.eclipse.core.resources.problemmarker" />
+      <super type="org.eclipse.core.resources.textmarker" />
+      <attribute name="key" />
+      <attrbute name="violation" />
+      <persistent value="true" />
+   </extension>  
+   <extension point="org.eclipse.ui.ide.markerResolution">
+   		<markerResolutionGenerator markerType="com.tongyx.plugin.favorites.auditmarker" 
+   			class="com.tongyx.plugin.favorites.builder.VoilationResolutionGenerator" />
+   </extension>
+   <extension id="propertiesauditor" name="Favorites Properties Auditor" point="org.eclipse.core.resources.natures">
+      <runtime>
+         <run class="com.tongyx.plugin.favorites.builder.PropertiesAuditorNature" />        
+      </runtime>
+      <builder id="com.tongyx.plugin.favorites.propertiesAuditor" />
+      <requires-nature id="org.eclipse.jdt.core.javanature" />
+      <!-- <requires-nature id="org.eclipse.pde.PluginNature" /> -->
+      <one-of-nature id="pluginAuditors" />
+   </extension>
+   <extension point="org.eclipse.ui.ide.projectNatureImages">
+   		<image icon="icons/favorite.png"
+   			natureId="com.tongyx.plugin.favorites.propertiesauditor"
+   			id="com.tongyx.plugin.favorites.propertiesauditorImage"/>
+   </extension>
+   <extension point="com.tongyx.plugin.favorites.favorites">
+      <itemType
+            class="com.qualityeclipse.favorites.model.FileFactory"
+            icon="icons/systemfile.gif"
+            id="WBFile"
+            name="Workbench File"
+            targetClass="org.eclipse.core.resources.IFile">
+      </itemType>
+   </extension>
+</plugin>
