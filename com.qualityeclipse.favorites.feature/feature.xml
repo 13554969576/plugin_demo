@@ -2,7 +2,8 @@
 <feature
       id="com.qualityeclipse.favorites"
       label="Favorite Feature"
-      version="1.0.0">
+      version="1.0.0"
+      plugin="com.tongyx.plugin.favorites">
 
    <description url="http://www.example.com/description">
       [Enter Feature Description here.]
@@ -28,5 +29,12 @@
          download-size="0"
          install-size="0"
          version="0.0.0"/>
+
+   <plugin
+         id="com.tongyx.plugin.favorites.gef"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
 
 </feature>

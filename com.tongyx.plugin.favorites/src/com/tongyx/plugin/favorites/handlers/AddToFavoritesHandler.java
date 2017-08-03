@@ -16,16 +16,10 @@ public class AddToFavoritesHandler implements IHandler {
 	//private static Logger log = Logger.getLogger(AddToFavoritesHandler.class.getName());
 
 	@Override
-	public void addHandlerListener(IHandlerListener listener) {
-		// TODO Auto-generated method stub
-		
-	}
+	public void addHandlerListener(IHandlerListener listener) {}
 
 	@Override
-	public void dispose() {
-		// TODO Auto-generated method stub
-
-	}
+	public void dispose() {}
 
 	@Override
 	public Object execute(ExecutionEvent event) throws ExecutionException {

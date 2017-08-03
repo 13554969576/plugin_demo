@@ -1,5 +1,6 @@
 package com.tongyx.plugin.favorites.views;
 
+import org.eclipse.jdt.ui.JavaUI;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.viewers.TableViewer;
 import org.eclipse.swt.dnd.DND;
@@ -19,7 +20,7 @@ private final TableViewer viewer;
 	public FavoritesDragSource(TableViewer viewer) {		
 		this.viewer = viewer;
 		DragSource source = new DragSource(viewer.getControl(),DND.DROP_COPY);
-		source.setTransfer(new Transfer[]{TextTransfer.getInstance(),ResourceTransfer.getInstance()});
+		source.setTransfer(new Transfer[]{TextTransfer.getInstance(),ResourceTransfer.getInstance(),JavaUI.getJavaElementClipboardTransfer()});
 		source.addDragListener(this);
 	}
 
@@ -38,7 +39,6 @@ private final TableViewer viewer;
 		} else if(TextTransfer.getInstance().isSupportedType(event.dataType)){
 			event.data=CopyFavoritesHandler.asText(objects);
 		}
-		
 	}
 
 

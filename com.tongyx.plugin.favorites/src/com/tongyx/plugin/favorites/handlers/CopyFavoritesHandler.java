@@ -52,7 +52,9 @@ public class CopyFavoritesHandler extends ClipboardHandler{
 		StringBuilder sb = new StringBuilder();
 		for(Object o: objects){
 			if(o instanceof IFavoriteItem){
-				sb.append(((IFavoriteItem)o).getName());				
+				sb.append(((IFavoriteItem)o).getLocation());	
+				sb.append("/");		
+				sb.append(((IFavoriteItem)o).getName());
 			} else {
 				if(o!=null)sb.append(o.toString());
 			}

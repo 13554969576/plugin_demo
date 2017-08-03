@@ -2,24 +2,17 @@
 <?eclipse version="3.4"?>
 <plugin>
    <extension-point id="favorites" name="Favorites" schema="schema/favorites.exsd"/>
-   <extension
-         point="org.eclipse.ui.views">
-      <category name="%favorites.view.category.name"
-            id="com.tongyx.plugin.favorites">
-      </category>
-      <view name="%favorites.view.name" icon="icons/favorite.png"
+   <extension point="org.eclipse.ui.views">
+      <category name="Favorites" id="com.tongyx.plugin.favorites" />
+      <view name="Favorites View" icon="icons/favorite.png"
             category="com.tongyx.plugin.favorites"
             class="com.tongyx.plugin.favorites.views.FavoritesView"
             id="com.tongyx.plugin.favorites.views.FavoritesView">
       </view>
    </extension>
    
-   <extension
-         point="org.eclipse.ui.commands">
-      <category
-            name="Tongyx Category"
-            id="com.tongyx.plugin.favorites.commands.category">
-      </category>
+   <extension  point="org.eclipse.ui.commands">
+      <category name="Favorites" id="com.tongyx.plugin.favorites.commands.category" />
       <command id="com.tongyx.plugin.favorites.commands.openView"
       		name="Open Favorites View"  categoryId="com.tongyx.plugin.favorites.commands.category">
       </command>
@@ -53,33 +46,30 @@
             name="Add/RemoveProperties Files">
       </command>       
    </extension>
-   <extension
-         point="org.eclipse.ui.menus">
+   <extension point="org.eclipse.ui.menus">
       <menuContribution locationURI="menu:org.eclipse.ui.main.menu?after=additions">
-      		<menu label="Favorites" id="com.tongyx.plugin.favorites.menus.favoritesMenu" mnemonic="v">
+      		<menu label="Favorites View" id="com.tongyx.plugin.favorites.menus.favoritesMenu" mnemonic="v">
 	      		<command commandId="com.tongyx.plugin.favorites.commands.openView"
 	       		id="com.tongyx.plugin.favorites.menus.openFavoritesView" mnemonic="O"
 	      		icon="icons/favorite.png"/>
+	      		
 	      		<dynamic id="com.tongyx.plugin.favorites.commands.toggleProjectNature"
-	      			class="com.tongyx.plugin.favorites.contributions.ToggleProjectNatureContributionItem"/>	      		
-      		</menu>
-      		<menu label="Properties Editor" id="com.tongyx.plugin.favorites.menus.propertieseditor" >
+	      			class="com.tongyx.plugin.favorites.contributions.ToggleProjectNatureContributionItem"/>	 
+	      			
 	      		<command commandId="com.tongyx.plugin.favorites.editors.delete"
-		       		id="com.tongyx.plugin.favorites.editors.delete"
-		      		icon="icons/delete_e.png">
+		       		id="com.tongyx.plugin.favorites.editors.delete" icon="icons/delete_e.png">
 		      		<visibleWhen>
 		      			<with variable="activeEditorId">
 		      				<equals value="com.tongyx.plugin.favorites.editors.properties"/>
 		      			</with>
 		      		</visibleWhen>
-		      	</command>
+		      	</command>	     		
       		</menu>
       </menuContribution>  
        <menuContribution locationURI="toolbar:org.eclipse.ui.main.toolbar?after=additions">
       		<toolbar label="Favorites" id="com.tongyx.plugin.favorites.toolbars.main">
 	      		<command commandId="com.tongyx.plugin.favorites.commands.openView"	
-	      		icon="icons/favorite.png"
-	      		tooltip="Open the Favorites view"/>
+	      		icon="icons/favorite.png" tooltip="Open the Favorites view"/>
       		</toolbar>      	
       		<toolbar label="Favorites" id="com.tongyx.plugin.favorites.toolbars.main">
 	      		<command commandId="com.tongyx.plugin.favorites.editors.delete"
@@ -99,7 +89,7 @@
 	      		icon="icons/favorite.png"/>
       		</menu>
       </menuContribution>  
-       <menuContribution locationURI="popup:com.tongyx.plugin.favorites.views.FavoritesView?before=edit">
+       <menuContribution locationURI="popup:com.tongyx.plugin.favorites.views.FavoritesView?before=additions">
       		<menu label="Edit">
       			<command commandId="com.tongyx.plugin.favorites.commands.copy" icon="icons/copy_edit_e.png">
 	 		        <enabledWhen>

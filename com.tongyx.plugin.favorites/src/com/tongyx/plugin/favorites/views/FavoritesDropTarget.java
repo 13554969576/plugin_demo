@@ -20,7 +20,7 @@ public class FavoritesDropTarget implements DropTargetListener{
 	
 	public FavoritesDropTarget(TableViewer viewer){
 		DropTarget target = new DropTarget(viewer.getControl(), DND.DROP_MOVE | DND.DROP_COPY);
-		target.setTransfer(new Transfer[]{ResourceTransfer.getInstance(),JavaUI.getJavaElementClipboardTransfer()});
+		target.setTransfer(new Transfer[]{JavaUI.getJavaElementClipboardTransfer(),ResourceTransfer.getInstance()});
 		target.addDropListener(this);
 	}
 
@@ -64,7 +64,7 @@ public class FavoritesDropTarget implements DropTargetListener{
 
 	@Override
 	public void dropAccept(DropTargetEvent event) {
-		
+		System.out.println(event.data);
 	}
 	
 

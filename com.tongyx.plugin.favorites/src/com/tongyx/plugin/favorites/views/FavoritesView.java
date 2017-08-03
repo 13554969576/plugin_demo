@@ -110,7 +110,7 @@ public class FavoritesView extends ViewPart {
 		hookPageSelection();
 		hookDoubleClickAction();
 		//contributeToActionBars();
-		setHelpContextId();
+		setHelpContextId();		 
 	}
 	
 	@SuppressWarnings({ "unchecked" })

@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+   <extension point="org.eclipse.ui.views">
+      <view category="com.tongyx.plugin.favorites"
+            class="com.tongyx.plugin.favorites.gef.views.FavoritesGEFView"
+            id="com.tongyx.plugin.favorites.gef.views.FavoritesGEFView"
+            icon="icons/sample.gif" name="Favorites GEF View">
+      </view>
+   </extension>  
+   <extension point="org.eclipse.ui.editors">
+      <editor class="com.tongyx.plugin.favorites.gef.editors.FavoritesGEFEditor"
+            contributorClass="com.tongyx.plugin.favorites.gef.editors.FavoritesGEFEditorContributor"            
+            id="com.tongyx.plugin.favorites.gef.editors.FavoritesGEFEditor"
+            extensions="xml" icon="icons/sample.gif" name="Favorites GEF Editor">
+      </editor>
+   </extension>
+   <extension point="org.eclipse.ui.commands">
+      <command id="com.tongyx.plugin.favorites.gef.commands.openeditor" description="Open the favorites editor if it is not already visible"
+      		name="Open Favorites Editor"  categoryId="com.tongyx.plugin.favorites.commands.category">
+      </command>
+   </extension>
+   <extension point="org.eclipse.ui.menus">
+   		 <menuContribution locationURI="menu:org.eclipse.ui.main.menu?after=additions">
+      		<menu label="Favorites" id="com.tongyx.plugin.favorites.menus.propertieseditor" >
+	      		<command commandId="com.tongyx.plugin.favorites.gef.commands.openeditor"
+		       		id="com.tongyx.plugin.favorites.gef.commands.openeditor" />
+      		</menu>   		 	
+   		 </menuContribution>
+   </extension>
+   <extension point="org.eclipse.ui.handlers">
+        <handler commandId="com.tongyx.plugin.favorites.gef.commands.openeditor"	
+			class="com.tongyx.plugin.favorites.gef.handlers.OpenFavoritesEditorHandler" />
+		<handler commandId="org.eclipse.ui.edit.delete"
+			class="com.tongyx.plugin.favorites.gef.handlers.FavoritesGEFDeleteHandler">
+			<activeWhen>
+				<with variable="activeEditorId">
+					<equals value="com.tongyx.plugin.favorites.gef.editors.FavoritesGEFEditor"/>
+				</with>
+			</activeWhen>
+		</handler>
+   </extension>
+</plugin>

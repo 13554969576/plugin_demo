@@ -15,7 +15,35 @@ Require-Bundle: org.eclipse.ui,
  org.eclipse.jdt.ui;bundle-version="3.12.2",
  org.eclipse.jface.text,
  org.eclipse.ui.editors,
- org.eclipse.ui.views;bundle-version="3.8.102"
+ org.eclipse.ui.views;bundle-version="3.8.102",
+ org.eclipse.gef;bundle-version="3.11.0"
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
 Bundle-ActivationPolicy: lazy
-Export-Package: com.tongyx.plugin.favorites.views
+Export-Package: com.tongyx.plugin.favorites.editors;
+  uses:="org.eclipse.ui,
+   org.eclipse.ui.editors.text,
+   org.eclipse.core.runtime,
+   org.eclipse.jface.action,
+   org.eclipse.swt.graphics,
+   org.eclipse.core.commands.operations,
+   org.eclipse.jface.viewers,
+   org.eclipse.ui.part",
+ com.tongyx.plugin.favorites.model;
+  uses:="org.eclipse.core.runtime,
+   org.eclipse.jdt.core,
+   org.eclipse.swt.graphics,
+   org.eclipse.jface.resource,
+   org.eclipse.core.resources,
+   org.eclipse.ui.views.properties,
+   org.eclipse.jface.viewers",
+ com.tongyx.plugin.favorites.views;
+  uses:="org.eclipse.jface.action,
+   org.eclipse.swt.graphics,
+   org.eclipse.swt.widgets,
+   org.eclipse.jface.dialogs,
+   org.eclipse.jface.viewers,
+   org.eclipse.ui,
+   org.eclipse.osgi.util,
+   org.eclipse.swt.dnd,
+   com.tongyx.plugin.favorites.model,
+   org.eclipse.ui.part"

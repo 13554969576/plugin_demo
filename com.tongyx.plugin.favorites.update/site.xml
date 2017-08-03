@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<site>
+   <description name="Favorites" url="http://favorites.tongyx.com/update">
+      The Favorites plug-in, created over the course of this book,will display a list of resources, allow the user to add and remove resources from this list, easily open an editor on a selected resource, update this list automatically as a result of events elsewhere in the system, and more.
+   </description>
+   <feature url="features/com.qualityeclipse.favorites_1.0.0.jar" id="com.qualityeclipse.favorites" version="1.0.0">
+      <category name="favorites"/>
+   </feature>
+   <category-def name="favorites" label="Favorites"/>
+</site>
